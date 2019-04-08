@@ -123,3 +123,23 @@ class webauto_base():
             res = self.browser.execute_script(js)
             return res
         except Exception as e:
+            print(js)
+            print(str(e))
+            return ''
+
+    # solve image-captcha automatically and return the result
+    def solve_img_captcha(self, img_path, xpath_result):
+        global ANTICAPTCHA_KEY
+        try:
+            api_key = ANTICAPTCHA_KEY
+            client = anticap.AnticaptchaClient(api_key)
+            fp = open(img_path, 'rb')
+            task = anticap.ImageToTextTask(fp)
+            job = client.createTask(task)
+            job.join()
+            ret = ''
+            while(ret == ''): # wait for the solve job to be finished
+                ret = job.get_captcha_text()
+                self.delay_me(1)
+            self.set_value(xpath_result, ret)
+            return True
