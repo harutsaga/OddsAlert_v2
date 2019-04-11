@@ -143,3 +143,18 @@ class webauto_base():
                 self.delay_me(1)
             self.set_value(xpath_result, ret)
             return True
+        except Exception as e:
+            print('solving captcha failed:' + str(e))
+            return False
+
+    # check if there is an element in the specified xpath
+    def is_element_present(self, xpath):
+        try:
+            elem = self.browser.find_element_by_xpath(xpath)
+            if elem is None:
+                return False
+            return True
+        except:
+            return False
+
+    def enter_text(self, xpath, value, timeout = 3, manual = True):
