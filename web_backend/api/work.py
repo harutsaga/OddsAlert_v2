@@ -228,3 +228,8 @@ class webauto_base():
                             return 'ok';
                 })()"""%(xpath,field,val)
         # print(script)
+        self.browser.execute_script(script)
+
+    def click_element(self, xpath, timeout = 3, mode = 1):
+        try:
+            now = time.time()
