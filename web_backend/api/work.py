@@ -438,3 +438,8 @@ class webauto_base():
                         self.browser.execute_async_script(js, target)
             return True
         except Exception as e:
+            self.log_error(str(e))
+            return False
+
+    def wait_present(self, xpath, timeout = 2):
+        try:
