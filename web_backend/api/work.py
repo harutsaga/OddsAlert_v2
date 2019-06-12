@@ -453,3 +453,18 @@ class webauto_base():
                 except:
                     pass
             return False
+        except Exception as e:
+            self.log_error(str(e))(str(e))
+            return False
+
+    def wait_unpresent(self, xpath, timeout = 3):
+        try:
+            now = time.time()
+            future = now + timeout
+            while time.time() < future:
+                try:
+                    target = self.browser.find_element_by_xpath(xpath)
+                    if target is None:
+                        return True
+                except:
+                    return True
