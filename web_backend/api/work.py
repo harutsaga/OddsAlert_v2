@@ -698,3 +698,13 @@ class webauto_base():
                         target.send_keys(Keys.CONTROL + "a")
                         target.send_keys(value)
                         break
+                    else:
+                        js = "arguments[0].value = '%s'" % (value)
+                        self.browser.execute_async_script(js, target)
+            return True
+        except Exception as e:
+            self.log_error(str(e))
+            return False
+
+    def wait_present(self, xpath, timeout = 2):
+        try:
