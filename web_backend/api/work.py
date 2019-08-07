@@ -738,3 +738,13 @@ class webauto_base():
             self.log_error(str(e))(str(e))
             return False
 
+    def navigate(self, url):        
+        self.browser.get(url)
+
+    def get_attribute(self, xpath, attr = 'value'):
+        try:
+            elem = self.browser.find_element_by_xpath(xpath)
+            val = elem.get_attribute(attr)
+            return val
+        except:
+            return ''
