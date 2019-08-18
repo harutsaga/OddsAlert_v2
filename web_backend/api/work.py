@@ -798,3 +798,8 @@ class webauto_base():
             self.log_error(str(e))
             return None
 
+# Abstract web automation class
+# 2019.09 David
+
+import time
+from selenium import webdriver
