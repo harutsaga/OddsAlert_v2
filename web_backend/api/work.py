@@ -873,3 +873,18 @@ class webauto_base():
             return
     
     # open a new tab with url
+    def new_tab(self, url = ''):
+        try:
+            self.browser.execute_script("window.open('%s','_blank');"%url)
+        except:
+            return
+
+    # refresh the browser
+    def refresh(self):
+        self.browser.refresh()
+
+    # wait for <timeout> seconds
+    def delay_me(self, timeout = 3):
+        try:
+            now = time.time()
+            future = now + timeout
