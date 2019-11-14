@@ -1,0 +1,7 @@
+.vs
+packages
+obj
+bin
+migrations
+__pycache__
+node_modules
